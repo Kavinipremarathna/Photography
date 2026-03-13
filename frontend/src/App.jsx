@@ -26,7 +26,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/albums" element={<Albums />} />
           <Route path="/albums/:id" element={<AlbumDetails />} />
-
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route
             path="/admin/dashboard"

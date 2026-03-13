@@ -8,6 +8,7 @@ const albumSchema = new mongoose.Schema(
     category: String,
     tracks: [String],
     coverImage: String,
+    photos: [String],
     releaseDate: Date
   },
   { timestamps: true }

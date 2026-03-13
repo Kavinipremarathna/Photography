@@ -1,8 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export default function AdminSidebar() {
   const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/admin/login", { replace: true });
+  };
 
   return (
     <div className="w-64 bg-black text-white min-h-screen p-5">
@@ -11,7 +17,7 @@ export default function AdminSidebar() {
         <Link to="/admin/dashboard">Dashboard</Link>
         <Link to="/admin/albums">Albums</Link>
         <button
-          onClick={logout}
+          onClick={handleLogout}
           className="text-left text-red-400 mt-4"
         >
           Logout

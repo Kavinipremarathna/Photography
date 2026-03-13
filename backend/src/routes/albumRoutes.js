@@ -13,7 +13,15 @@ const router = express.Router();
 
 router.get("/", getAlbums);
 router.get("/:id", getAlbumById);
-router.post("/", protect, upload.single("coverImage"), createAlbum);
+router.post(
+  "/",
+  protect,
+  upload.fields([
+    { name: "coverImage", maxCount: 1 },
+    { name: "coverImages", maxCount: 500 }
+  ]),
+  createAlbum
+);
 router.put("/:id", protect, upload.single("coverImage"), updateAlbum);
 router.delete("/:id", protect, deleteAlbum);
 
