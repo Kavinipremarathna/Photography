@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
+import { useSiteSettings } from "../context/SiteSettingsContext";
 
 export default function Home() {
   const cursorRef = useRef(null);
   const ringRef = useRef(null);
+  const { settings } = useSiteSettings();
   let mx = 0,
     my = 0,
     rx = 0,
@@ -287,8 +289,8 @@ export default function Home() {
           }}
         >
           <img
-            src="/logo.jpeg"
-            alt="AlbumHub"
+            src={settings.logoUrl || "/logo.jpeg"}
+            alt={settings.siteName || "AlbumHub"}
             style={{ height: 36, objectFit: "contain" }}
           />
         </Link>
@@ -353,7 +355,7 @@ export default function Home() {
                 background: "var(--gold)",
               }}
             />
-            Premium Photography Platform
+            {settings.home?.eyebrow || "Premium Photography Platform"}
           </div>
 
           <h1
@@ -368,12 +370,12 @@ export default function Home() {
               marginBottom: 32,
             }}
           >
-            Showcase
+            {settings.home?.titleLine1 || "Showcase"}
             <br />
-            Albums with
+            {settings.home?.titleLine2 || "Albums with"}
             <br />
             <em style={{ fontStyle: "italic", color: "var(--gold)" }}>
-              Elegance
+              {settings.home?.titleAccent || "Elegance"}
             </em>
           </h1>
 
@@ -388,9 +390,8 @@ export default function Home() {
               fontWeight: 300,
             }}
           >
-            AlbumHub is a refined photography platform with secure admin
-            controls, cloud image hosting, and a layout built to let your work
-            breathe.
+            {settings.home?.description ||
+              "AlbumHub is a refined photography platform with secure admin controls, cloud image hosting, and a layout built to let your work breathe."}
           </p>
 
           <div
@@ -412,7 +413,9 @@ export default function Home() {
                 transition: "transform 0.3s",
               }}
             >
-              <span>Explore Albums</span>
+              <span>
+                {settings.home?.primaryButtonText || "Explore Albums"}
+              </span>
             </Link>
             <Link
               to="/contact"
@@ -429,7 +432,8 @@ export default function Home() {
                 gap: 8,
               }}
             >
-              Get in Touch <span>→</span>
+              {settings.home?.secondaryButtonText || "Get in Touch"}{" "}
+              <span>→</span>
             </Link>
           </div>
 
@@ -444,9 +448,18 @@ export default function Home() {
             }}
           >
             {[
-              ["2.4k", "Albums"],
-              ["98k", "Photos"],
-              ["12k", "Visitors"],
+              [
+                settings.home?.statsAlbumsValue || "2.4k",
+                settings.home?.statsAlbumsLabel || "Albums",
+              ],
+              [
+                settings.home?.statsPhotosValue || "98k",
+                settings.home?.statsPhotosLabel || "Photos",
+              ],
+              [
+                settings.home?.statsVisitorsValue || "12k",
+                settings.home?.statsVisitorsLabel || "Visitors",
+              ],
             ].map(([num, label]) => (
               <div key={label}>
                 <div

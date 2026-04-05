@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
+import { useSiteSettings } from "../context/SiteSettingsContext";
 
 export default function Contact() {
   const cursorRef = useRef(null);
   const ringRef = useRef(null);
+  const { settings } = useSiteSettings();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -81,19 +83,19 @@ export default function Contact() {
     {
       icon: "✦",
       label: "Email",
-      value: "hello@albumhub.com",
+      value: settings.contact?.email || "hello@albumhub.com",
       sub: "We reply within 24 hours",
     },
     {
       icon: "◎",
       label: "Location",
-      value: "Colombo, Sri Lanka",
+      value: settings.contact?.location || "Colombo, Sri Lanka",
       sub: "Available globally",
     },
     {
       icon: "◇",
       label: "Working Hours",
-      value: "Mon – Fri, 9am – 6pm",
+      value: settings.contact?.hours || "Mon - Fri, 9am - 6pm",
       sub: "IST (UTC+5:30)",
     },
   ];
@@ -319,8 +321,8 @@ export default function Contact() {
           }}
         >
           <img
-            src="/logo.jpeg"
-            alt="AlbumHub"
+            src={settings.logoUrl || "/logo.jpeg"}
+            alt={settings.siteName || "AlbumHub"}
             style={{ height: 36, objectFit: "contain" }}
           />
         </Link>
@@ -365,7 +367,7 @@ export default function Contact() {
             }}
           >
             <span className="gold-line" />
-            Get In Touch
+            {settings.contact?.eyebrow || "Get In Touch"}
           </div>
           <h1
             className="hero-heading"
@@ -379,10 +381,7 @@ export default function Contact() {
               marginBottom: 32,
             }}
           >
-            Let's Start a<br />
-            <em style={{ fontStyle: "italic", color: "var(--gold)" }}>
-              Conversation
-            </em>
+            {settings.contact?.title || "Let's Start a Conversation"}
           </h1>
           <p
             className="hero-sub"
@@ -394,8 +393,8 @@ export default function Contact() {
               maxWidth: 480,
             }}
           >
-            Whether you have a question, a collaboration idea, or just want to
-            say hello — we'd love to hear from you.
+            {settings.contact?.subtitle ||
+              "Whether you have a question, a collaboration idea, or just want to say hello - we'd love to hear from you."}
           </p>
         </div>
       </section>

@@ -1,7 +1,9 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { useSiteSettings } from "../context/SiteSettingsContext";
 
 export default function Navbar() {
   const { pathname } = useLocation();
+  const { settings } = useSiteSettings();
   // Hide navbar on pages that render their own custom navbar
   if (pathname.startsWith("/admin") || pathname === "/contact") {
     return null;
@@ -70,8 +72,8 @@ export default function Navbar() {
           }}
         >
           <img
-            src="/logo.jpeg"
-            alt="AlbumHub"
+            src={settings.logoUrl || "/logo.jpeg"}
+            alt={settings.siteName || "AlbumHub"}
             style={{
               height: 40,
               objectFit: "contain",

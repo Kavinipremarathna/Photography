@@ -8,6 +8,7 @@ export default function AlbumDetails() {
   const { id } = useParams();
   const [album, setAlbum] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchAlbum = async () => {
@@ -15,7 +16,8 @@ export default function AlbumDetails() {
         const { data } = await api.get(`/albums/${id}`);
         setAlbum(data);
         setLoading(false);
-      } catch {
+      } catch (err) {
+        setError(err?.response?.data?.message || "Album not found");
         setLoading(false);
       }
     };
@@ -23,22 +25,30 @@ export default function AlbumDetails() {
   }, [id]);
 
   if (loading) return <Loader />;
-  if (!album) return <ErrorMessage message="Album not found" />;
+  if (!album) return <ErrorMessage message={error || "Album not found"} />;
+
+  const photos = Array.isArray(album.photos) ? album.photos : [];
+  const coverImage = album.coverImage || photos[0];
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
+    <div className="p-6 pt-28 max-w-6xl mx-auto min-h-screen">
       <div className="mb-6">
         <h1 className="text-3xl font-bold">{album.title}</h1>
         <p className="text-gray-600 text-lg">{album.artist}</p>
-        {album.description && <p className="mt-2 text-gray-700">{album.description}</p>}
+        {album.description && (
+          <p className="mt-2 text-gray-700">{album.description}</p>
+        )}
       </div>
 
-      {album.photos && album.photos.length > 0 ? (
+      {photos.length > 0 ? (
         <>
-          <h3 className="text-xl font-bold mb-4">Photos ({album.photos.length})</h3>
+          <h3 className="text-xl font-bold mb-4">Photos ({photos.length})</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {album.photos.map((photo, index) => (
-              <div key={index} className="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition">
+            {photos.map((photo, index) => (
+              <div
+                key={index}
+                className="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition"
+              >
                 <img
                   src={photo}
                   alt={`${album.title} - Photo ${index + 1}`}
@@ -48,12 +58,14 @@ export default function AlbumDetails() {
             ))}
           </div>
         </>
-      ) : (
+      ) : coverImage ? (
         <img
-          src={album.coverImage}
+          src={coverImage}
           alt={album.title}
           className="w-full h-80 object-cover rounded"
         />
+      ) : (
+        <ErrorMessage message="No photos available for this album." />
       )}
 
       {album.tracks && album.tracks.length > 0 && (

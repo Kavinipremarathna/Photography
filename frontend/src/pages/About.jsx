@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
+import { useSiteSettings } from "../context/SiteSettingsContext";
 
 export default function About() {
   const cursorRef = useRef(null);
   const ringRef = useRef(null);
+  const { settings } = useSiteSettings();
   let mx = 0,
     my = 0,
     rx = 0,
@@ -346,8 +348,8 @@ export default function About() {
           }}
         >
           <img
-            src="/logo.jpeg"
-            alt="AlbumHub"
+            src={settings.logoUrl || "/logo.jpeg"}
+            alt={settings.siteName || "AlbumHub"}
             style={{ height: 36, objectFit: "contain" }}
           />
         </Link>
@@ -398,7 +400,7 @@ export default function About() {
             }}
           >
             <span className="gold-line" />
-            Our Story
+            {settings.about?.eyebrow || "Our Story"}
           </div>
 
           <h1
@@ -413,12 +415,7 @@ export default function About() {
               marginBottom: 36,
             }}
           >
-            Built by People
-            <br />
-            Who Love{" "}
-            <em style={{ fontStyle: "italic", color: "var(--gold)" }}>
-              Photography
-            </em>
+            {settings.about?.title || "Built by People Who Love Photography"}
           </h1>
 
           <p
@@ -431,9 +428,8 @@ export default function About() {
               fontWeight: 300,
             }}
           >
-            AlbumHub started as a personal project — a frustration with
-            platforms that made beautiful photography look ordinary. We built
-            the tool we always wished existed.
+            {settings.about?.subtitle ||
+              "AlbumHub started as a personal project - a frustration with platforms that made beautiful photography look ordinary. We built the tool we always wished existed."}
           </p>
         </div>
 

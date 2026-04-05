@@ -16,10 +16,9 @@ export default function AdminSidebar() {
       <nav className="flex flex-col gap-3">
         <Link to="/admin/dashboard">Dashboard</Link>
         <Link to="/admin/albums">Albums</Link>
-        <button
-          onClick={handleLogout}
-          className="text-left text-red-400 mt-4"
-        >
+        <Link to="/admin/hero">Hero</Link>
+        <Link to="/admin/settings">Site Settings</Link>
+        <button onClick={handleLogout} className="text-left text-red-400 mt-4">
           Logout
         </button>
       </nav>
