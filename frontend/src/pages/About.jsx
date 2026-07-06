@@ -314,14 +314,35 @@ export default function About() {
         .footer-link { transition: color 0.3s; }
         .footer-link:hover { color: var(--gold) !important; }
 
+        .section-kicker {
+          font-size: 13px;
+          font-weight: 800;
+          letter-spacing: 0.28em;
+          text-transform: uppercase;
+          color: #8c6d3f;
+          margin-bottom: 16px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          text-shadow: 0 1px 0 rgba(255,255,255,0.45);
+        }
+
+        @media (max-width: 768px) {
+          .section-kicker {
+            font-size: 12px;
+            letter-spacing: 0.24em;
+          }
+        }
+
         /* Ghost text watermark */
         .section-watermark {
           position: absolute; pointer-events: none; user-select: none;
           font-family: 'Playfair Display', serif;
-          font-weight: 900; color: transparent;
-          -webkit-text-stroke: 1px rgba(201,169,110,0.14);
+          font-weight: 900; color: rgba(201,169,110,0.08);
+          -webkit-text-stroke: 1px rgba(201,169,110,0.24);
           letter-spacing: -4px; line-height: 1;
-          opacity: 0.62;
+          opacity: 0.9;
+          text-shadow: 0 1px 0 rgba(255,255,255,0.4);
         }
       `}</style>
 
@@ -636,20 +657,7 @@ export default function About() {
         </div>
 
         <div className="reveal" style={{ marginBottom: 72 }}>
-          <div
-            style={{
-              fontSize: 12,
-              fontWeight: 800,
-              letterSpacing: "0.34em",
-              textTransform: "uppercase",
-              color: "#8c6d3f",
-              marginBottom: 16,
-              display: "flex",
-              alignItems: "center",
-              gap: 12,
-              textShadow: "0 1px 0 rgba(255,255,255,0.45)",
-            }}
-          >
+          <div className="section-kicker">
             <span className="gold-line" />
             What We Stand For
           </div>

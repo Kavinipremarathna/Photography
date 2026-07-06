@@ -245,6 +245,26 @@ export default function Home() {
         .footer-link { transition: color 0.3s; }
         .footer-link:hover { color: var(--gold) !important; }
 
+        .section-kicker {
+          font-size: 13px;
+          font-weight: 800;
+          letter-spacing: 0.28em;
+          text-transform: uppercase;
+          color: #8c6d3f;
+          margin-bottom: 16px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          text-shadow: 0 1px 0 rgba(255,255,255,0.45);
+        }
+
+        @media (max-width: 768px) {
+          .section-kicker {
+            font-size: 12px;
+            letter-spacing: 0.24em;
+          }
+        }
+
         /* Features ghost text */
         .features-section { position: relative; }
         .features-section::before {
@@ -252,9 +272,11 @@ export default function Home() {
           top: 60px; right: 60px;
           font-family: 'Playfair Display', serif;
           font-size: 120px; font-weight: 900;
-          color: transparent; -webkit-text-stroke: 1px rgba(58,43,31,0.14);
+          color: rgba(58,43,31,0.08);
+          -webkit-text-stroke: 1px rgba(58,43,31,0.22);
           letter-spacing: -4px; user-select: none; pointer-events: none;
-          opacity: 0.62;
+          opacity: 0.88;
+          text-shadow: 0 1px 0 rgba(255,255,255,0.55);
         }
 
         /* Scroll line */
@@ -589,20 +611,7 @@ export default function Home() {
           }}
         >
           <div>
-            <div
-              style={{
-                fontSize: 12,
-                fontWeight: 800,
-                letterSpacing: "0.34em",
-                textTransform: "uppercase",
-                color: "#8c6d3f",
-                marginBottom: 16,
-                display: "flex",
-                alignItems: "center",
-                gap: 12,
-                textShadow: "0 1px 0 rgba(255,255,255,0.45)",
-              }}
-            >
+            <div className="section-kicker">
               <span
                 style={{
                   display: "block",
