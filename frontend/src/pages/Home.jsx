@@ -272,11 +272,21 @@ export default function Home() {
           top: 60px; right: 60px;
           font-family: 'Playfair Display', serif;
           font-size: 120px; font-weight: 900;
-          color: rgba(58,43,31,0.08);
-          -webkit-text-stroke: 1px rgba(58,43,31,0.22);
+          color: rgba(58,43,31,0.16);
+          -webkit-text-stroke: 1px rgba(58,43,31,0.26);
           letter-spacing: -4px; user-select: none; pointer-events: none;
-          opacity: 0.88;
-          text-shadow: 0 1px 0 rgba(255,255,255,0.55);
+          opacity: 1;
+          text-shadow: 0 2px 0 rgba(255,255,255,0.55), 0 10px 30px rgba(58,43,31,0.08);
+        }
+
+        @media (max-width: 768px) {
+          .features-section::before {
+            top: 24px;
+            right: 18px;
+            font-size: 86px;
+            color: rgba(58,43,31,0.2);
+            -webkit-text-stroke: 1px rgba(58,43,31,0.3);
+          }
         }
 
         /* Scroll line */

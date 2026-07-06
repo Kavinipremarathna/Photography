@@ -338,11 +338,21 @@ export default function About() {
         .section-watermark {
           position: absolute; pointer-events: none; user-select: none;
           font-family: 'Playfair Display', serif;
-          font-weight: 900; color: rgba(201,169,110,0.08);
-          -webkit-text-stroke: 1px rgba(201,169,110,0.24);
+          font-weight: 900; color: rgba(201,169,110,0.18);
+          -webkit-text-stroke: 1px rgba(201,169,110,0.28);
           letter-spacing: -4px; line-height: 1;
-          opacity: 0.9;
-          text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+          opacity: 1;
+          text-shadow: 0 2px 0 rgba(255,255,255,0.4), 0 10px 30px rgba(201,169,110,0.08);
+        }
+
+        @media (max-width: 768px) {
+          .section-watermark {
+            font-size: 96px !important;
+            top: 18px !important;
+            right: -8px !important;
+            color: rgba(201,169,110,0.22);
+            -webkit-text-stroke: 1px rgba(201,169,110,0.3);
+          }
         }
       `}</style>
 
