@@ -1,106 +1,39 @@
-# 🎵 Photography Website
+# Photography
 
-A full-stack web application that allows users to browse music albums and enables administrators to manage album content through a secure admin panel.
+Photography album upload and management app with a React frontend and an Express backend.
 
----
+## Structure
 
-## 🚀 Overview
+- `frontend/` - Vite + React app
+- `backend/` - Express + MongoDB API
+- `vercel.json` - deployment config for the frontend/API routing
+- `README-ARCHITECTURE.md` - detailed technical overview
 
-This project demonstrates a modern full-stack architecture using React, Node.js, and MongoDB with cloud-based image handling.
+## Development
 
-- Users can explore albums and view details
-- Admins can securely manage albums (Add / Edit / Delete)
-- Images are stored in the cloud using Cloudinary
+Frontend:
 
----
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-## ✨ Features
+Backend:
 
-### 🌐 Public Website
-- View all albums in a responsive grid
-- View detailed album information
-- Clean and modern UI
+```bash
+cd backend
+npm install
+npm run dev
+```
 
-### 🔐 Admin Panel
-- Secure admin login (JWT authentication)
-- Dashboard overview
-- Add new albums with image upload
-- Edit and delete albums
+## Notes
 
----
+- Keep generated frontend output out of version control.
+- Use `frontend/.env` or `frontend/.env.development` for local API settings.
 
-## 🧱 Tech Stack
+## Quick Overview
 
-### Frontend
-- React (Vite)
-- Tailwind CSS
-- React Router
-- Axios
-
-### Backend
-- Node.js
-- Express.js
-- MongoDB (Mongoose)
-
-### Security
-- JWT Authentication
-- bcrypt password hashing
-
-### Cloud & Deployment
-- Cloudinary (image storage)
-- Vercel (frontend)
-- Render (backend)
-- MongoDB Atlas (database)
-
----
-
-## 🏗 Architecture
-
-Frontend (React)  
-⬇️  
-Backend API (Express)  
-⬇️  
-MongoDB (Database)  
-⬇️  
-Cloudinary (Image Storage)
-
----
-
-## 🔌 API Endpoints
-
-### Auth
-- POST /api/auth/login
-
-### Albums
-- GET /api/albums
-- GET /api/albums/:id
-- POST /api/albums (Admin only)
-- PUT /api/albums/:id (Admin only)
-- DELETE /api/albums/:id (Admin only)
-
----
-
-## 🔐 Authentication Flow
-
-1. Admin logs in with email & password  
-2. Password verified using bcrypt  
-3. JWT token generated  
-4. Token stored in browser  
-5. Token used for protected routes  
-
----
-
-## 🖼 Image Upload Flow
-
-1. Admin uploads image  
-2. Backend receives file (Multer)  
-3. Image uploaded to Cloudinary  
-4. Cloudinary returns image URL  
-5. URL stored in MongoDB  
-6. Displayed in frontend  
-
----
-
-## 🌍 Environment Variables
-
-### Backend (.env)
+- Users can browse albums and view album details.
+- Admins can add, edit, and delete albums through a secure panel.
+- Images are stored through Cloudinary when configured.

@@ -245,9 +245,11 @@ export default function About() {
           padding: 52px 40px;
           border-bottom: 1px solid var(--line);
           border-right: 1px solid var(--line);
-          transition: background 0.4s;
+          transition: background 0.4s, transform 0.3s, box-shadow 0.3s;
           position: relative;
           overflow: hidden;
+          background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(250,248,244,1) 100%);
+          box-shadow: inset 0 1px 0 rgba(255,255,255,0.65);
         }
         .value-card::after {
           content: '';
@@ -257,7 +259,11 @@ export default function About() {
           transition: transform 0.4s ease;
         }
         .value-card:hover::after { transform: scaleY(1); }
-        .value-card:hover { background: var(--cream); }
+        .value-card:hover {
+          background: white;
+          transform: translateY(-4px);
+          box-shadow: 0 22px 55px rgba(26,23,20,0.08);
+        }
 
         /* Team cards */
         .team-card {
@@ -313,8 +319,9 @@ export default function About() {
           position: absolute; pointer-events: none; user-select: none;
           font-family: 'Playfair Display', serif;
           font-weight: 900; color: transparent;
-          -webkit-text-stroke: 1px rgba(201,169,110,0.08);
+          -webkit-text-stroke: 1px rgba(201,169,110,0.14);
           letter-spacing: -4px; line-height: 1;
+          opacity: 0.62;
         }
       `}</style>
 
@@ -631,14 +638,16 @@ export default function About() {
         <div className="reveal" style={{ marginBottom: 72 }}>
           <div
             style={{
-              fontSize: 11,
-              letterSpacing: "0.3em",
+              fontSize: 12,
+              fontWeight: 800,
+              letterSpacing: "0.34em",
               textTransform: "uppercase",
-              color: "var(--gold)",
+              color: "#8c6d3f",
               marginBottom: 16,
               display: "flex",
               alignItems: "center",
               gap: 12,
+              textShadow: "0 1px 0 rgba(255,255,255,0.45)",
             }}
           >
             <span className="gold-line" />
@@ -702,8 +711,8 @@ export default function About() {
                 style={{
                   fontSize: 14,
                   lineHeight: 1.75,
-                  color: "var(--muted)",
-                  fontWeight: 300,
+                  color: "#5a4f45",
+                  fontWeight: 400,
                 }}
               >
                 {v.desc}

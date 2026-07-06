@@ -208,14 +208,25 @@ export default function Home() {
         }
 
         /* Feature cards */
-        .feature-card { position: relative; overflow: hidden; transition: background 0.4s; }
+        .feature-card {
+          position: relative;
+          overflow: hidden;
+          transition: background 0.4s, transform 0.3s, box-shadow 0.3s;
+          background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(250,248,244,1) 100%);
+          border: 1px solid rgba(26,23,20,0.08);
+          box-shadow: 0 18px 45px rgba(26,23,20,0.04);
+        }
         .feature-card::before {
           content: ''; position: absolute; bottom: 0; left: 0; right: 0;
           height: 2px; background: var(--gold);
           transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
         }
         .feature-card:hover::before { transform: scaleX(1); }
-        .feature-card:hover { background: white !important; }
+        .feature-card:hover {
+          background: white !important;
+          transform: translateY(-4px);
+          box-shadow: 0 22px 55px rgba(26,23,20,0.08);
+        }
 
         /* Albums strip */
         .album-strip { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
@@ -241,8 +252,9 @@ export default function Home() {
           top: 60px; right: 60px;
           font-family: 'Playfair Display', serif;
           font-size: 120px; font-weight: 900;
-          color: transparent; -webkit-text-stroke: 1px rgba(58,43,31,0.06);
+          color: transparent; -webkit-text-stroke: 1px rgba(58,43,31,0.14);
           letter-spacing: -4px; user-select: none; pointer-events: none;
+          opacity: 0.62;
         }
 
         /* Scroll line */
@@ -579,14 +591,16 @@ export default function Home() {
           <div>
             <div
               style={{
-                fontSize: 11,
-                letterSpacing: "0.3em",
+                fontSize: 12,
+                fontWeight: 800,
+                letterSpacing: "0.34em",
                 textTransform: "uppercase",
-                color: "var(--gold)",
+                color: "#8c6d3f",
                 marginBottom: 16,
                 display: "flex",
                 alignItems: "center",
                 gap: 12,
+                textShadow: "0 1px 0 rgba(255,255,255,0.45)",
               }}
             >
               <span
@@ -629,7 +643,7 @@ export default function Home() {
             <div
               key={f.num}
               className="feature-card reveal"
-              style={{ background: "var(--warm-white)", padding: "48px 36px" }}
+              style={{ padding: "48px 36px" }}
             >
               <div
                 style={{
@@ -663,8 +677,8 @@ export default function Home() {
                 style={{
                   fontSize: 13.5,
                   lineHeight: 1.7,
-                  color: "var(--muted)",
-                  fontWeight: 300,
+                  color: "#5a4f45",
+                  fontWeight: 400,
                 }}
               >
                 {f.desc}
